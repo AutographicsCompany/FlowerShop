@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <!-- Scheduled action to fetch weather data for all warehouses hourly -->
+        <record id="ir_cron_fetch_weather" model="ir.cron">
+            <field name="name">Fetch Weather Data for All Warehouses</field>
+            <field name="model_id" ref="model_stock_warehouse"/>
+            <field name="state">code</field>
+            <field name="code">model.get_weather_all_warehouses()</field>
+            <field name="interval_number">1</field> <!-- Hourly -->
+            <field name="interval_type">hours</field>
+            <field name="numbercall">-1</field> <!-- Run indefinitely -->
+            <field name="active" eval="True"/>
+        </record>
+
+        <!-- Scheduled action to fetch forecast data for all warehouses daily -->
+        <record id="ir_cron_fetch_forecast" model="ir.cron">
+            <field name="name">Fetch Forecast Data for All Warehouses</field>
+            <field name="model_id" ref="model_stock_warehouse"/>
+            <field name="state">code</field>
+            <field name="code">model.get_forecast_all_warehouses()</field>
+            <field name="interval_number">1</field> <!-- Daily -->
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field> <!-- Run indefinitely -->
+            <field name="active" eval="True"/>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <!-- Extend stock.warehouse form view -->
+        <record id="view_stock_warehouse_form_inherit" model="ir.ui.view">
+            <field name="name">stock.warehouse.form.inherit</field>
+            <field name="model">stock.warehouse</field>
+            <field name="inherit_id" ref="stock.view_warehouse"/>
+            <field name="arch" type="xml">
+                <data>
+                    <!-- Add button to the form view -->
+                    <xpath expr="//sheet/notebook/page[@name='warehouse_config']" position="inside">
+
+                        <br/>
+                        <div>
+                             <label for="contact_id" string="Contact"/>
+                            <field name="contact_id" required="1"/>
+                        </div>
+                        <br/>
+                        <div>
+                            <button name="action_button_fetch_weather" string="Fetch Weather Data" type="object" class="btn btn-primary"/>
+                        </div>
+                    </xpath>
+                    <!-- Display weather data -->
+                    <xpath expr="//sheet/notebook/page[@name='warehouse_config']" position="after">
+                        <page string="Weather Data" name="weather_data_page">
+                            <group>
+                                <field name="weather_data_ids" widget="one2many_list">
+                                    <tree editable="bottom">
+                                        <field name="temperature"/>
+                                        <field name="pressure"/>
+                                        <field name="humidity"/>
+                                        <field name="wind_speed"/>
+                                        <field name="rain_volume"/>
+                                        <field name="description"/>
+                                        <field name="capture_time"/>
+                                    </tree>
+                                </field>
+                            </group>
+                        </page>
+                    </xpath>
+                </data>
+            </field>
+        </record>
+    </data>
+</odoo>

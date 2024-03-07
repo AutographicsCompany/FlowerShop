@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="product_website_template" inherit_id="website_sale.product">
+        <xpath expr="//section[@id='product_detail']" position="inside">
+            <div t-if="product.product_variant_id.is_flower and product.product_variant_id.flower_id">
+                <h2>This is a Flower Product</h2>
+                <p>Common Name: <t t-esc="product.product_variant_id.flower_id.Common_name"/></p>
+                <p>Season Start: <t t-esc="product.product_variant_id.flower_id.season_start"/></p>
+                <p>Season End: <t t-esc="product.product_variant_id.flower_id.season_end"/></p>
+            </div>
+        </xpath>
+    </template>
+</odoo>

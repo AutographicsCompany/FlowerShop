@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!-- Action -->
+    <record id="action_flower_products" model="ir.actions.act_window">
+        <field name="res_model">product.product</field>
+        <field name="view_mode">kanban,tree,form,activity</field>
+        <field name="context" eval="{'default_is_flower': True}"/>
+        <field name="domain" eval="[('is_flower', '=', True)]"/>
+    </record>
+
+<!--    <template id="product_website_template" inherit_id="website_sale.product">-->
+<!--        <xpath expr="//section[@id='product_detail']" position="after">-->
+<!--            <div t-if="product.product_variant_id.is_flower and product.product_variant_id.flower_id">-->
+<!--                <t t-set="flower" t-value="product.product_variant_id.flower_id"/>-->
+<!--            </div>-->
+<!--        </xpath>-->
+<!--    </template>-->
+
+    <!-- Form View -->
+ <record id="view_product_flower_custom_form" model="ir.ui.view">
+        <field name="name">product.flower.custom.form.view</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='barcode']" position="after">
+                <field name="is_flower"/>
+                <field name="flower_id" attrs="{'invisible': [('is_flower', '=', False)]}"/>
+            </xpath>
+        </field>
+    </record>
+
+     <record id="view_product_flower_custom_form_1" model="ir.ui.view">
+        <field name="name">product.flower.custom.form.view.test</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='barcode']" position="after">
+                <field name="is_flower"/>
+                <field name="flower_id" attrs="{'invisible': [('is_flower', '=', False)]}"/>
+            </xpath>
+        </field>
+    </record>
+    <!-- Menu -->
+<!--    <menuitem id="menu_product_flowers"-->
+<!--              name="Product Flowers"-->
+<!--              parent="menu_flower_root"-->
+<!--              action="action_flower_products"-->
+<!--              sequence="10"/>-->
+
+</odoo>

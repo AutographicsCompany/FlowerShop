@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="action_flower" model="ir.actions.act_window">
+        <field name="name">Flower</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">flower</field>
+        <field name="view_mode">tree,kanban,form</field>
+    </record>
+
+
+    <record id="kanban_view_id_flowers" model="ir.ui.view">
+        <field name="name">kanban.view.flower</field>
+        <field name="model">flower</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_card oe_kanban_global_click">
+                            <div class="o_kanban_record_top">
+                                <div class="o_kanban_record_headings">
+                                    <div class="row">
+                                        <strong class="col-12">
+                                            <field name="Common_name"/>
+                                        </strong>
+                                        <strong class="col-12">
+                                            <field name="season_start"/>
+                                        </strong>
+                                        <strong class="col-12">
+                                            <field name="season_end"/>
+                                        </strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="ir_default_form_view" model="ir.ui.view">
+        <field name="name">Flower form view</field>
+        <field name="model">flower</field>
+        <field name="arch" type="xml">
+            <form string="User-defined Defaults">
+                <sheet>
+                    <!--                    <div class="oe_title">-->
+                    <!--                        <h1>-->
+                    <!--                            <field name="ref" readonly="1"/>-->
+                    <!--                        </h1>-->
+                    <!--                    </div>-->
+                    <group>
+                        <field name="Common_name"/>
+                        <field name="scientific_name"/>
+                        <field name="season_start"/>
+                        <field name="season_end"/>
+                        <!--                        <field name="active" invisible="1"/>-->
+                        <field name="watering_amount"/>
+                        <field name="watering_frequency"/>
+                    </group>
+                </sheet>
+                <!--                <div class="oe_chatter">-->
+                <!--                    <field name="message_follower_ids" groups="base.group_user"/>-->
+                <!--                    <field name="message_ids"/>-->
+                <!--                </div>-->
+            </form>
+        </field>
+    </record>
+
+<!--    <menuitem id="menu_flowers"-->
+<!--              name="Flowers"-->
+<!--              parent="menu_flower_root"-->
+<!--              action="action_flower"-->
+<!--              sequence="10"/>-->
+
+</odoo>
